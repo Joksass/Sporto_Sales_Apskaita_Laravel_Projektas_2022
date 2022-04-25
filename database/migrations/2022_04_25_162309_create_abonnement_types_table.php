@@ -13,9 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cities', function (Blueprint $table) {
+        Schema::create('abonnement_types', function (Blueprint $table) {
             $table->id();
-            $table->string('city');
+            $table->string('abonnement');
+            $table->string('coach')->default("-");
+            $table->string('coach_specialization')->default("-");
+            $table->bigInteger('lenght');
+            $table->double('price', 4, 1);
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists('abonnement_types');
     }
 };

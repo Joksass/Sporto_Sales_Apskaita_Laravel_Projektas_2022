@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Abonnements;
+use App\Models\AbonnementTypes;
 
-class AbonnementsSeeder extends Seeder
+class AbonnementTypesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,23 +15,27 @@ class AbonnementsSeeder extends Seeder
      */
     public function run()
     {
-        Abonnements::create([
+        AbonnementTypes::Create([
             'abonnement' => 'Studento',
             'lenght' => '1',
             'price' => '25',
         ]);
-        Abonnements::create([
+        AbonnementTypes::Create([
             'abonnement' => 'Studento + Treneris',
+            'coach' => 'Sigitas',
+            'coach_specialization' => 'Fitnesas',
             'lenght' => '1',
             'price' => '40',
         ]);
-        Abonnements::create([
+        AbonnementTypes::Create([
             'abonnement' => 'Suaugusio',
             'lenght' => '1',
             'price' => '30',
         ]);
-        Abonnements::create([
-            'abonnement' => 'Suaugusio + Treneris',
+        AbonnementTypes::Create([
+            'abonnement' => 'Saugusio + Treneris',
+            'coach' => 'Donaltas',
+            'coach_specialization' => 'TRX ir Fitnesas',
             'lenght' => '1',
             'price' => '45',
         ]);

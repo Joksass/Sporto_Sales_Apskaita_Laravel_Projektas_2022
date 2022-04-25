@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('abonnement_id')->constrained('abonnements');
-            $table->foreignId('coach_id')->constrained('coaches');
-            $table->foreignId('city_id')->constrained('cities');
+        Schema::create('subscriptions', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('abonnement_id')->constrained('abonnement_types');
+            $table->foreignId('club_id')->constrained('clubs');
+            $table->timestamps();
         });
     }
 
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('subscriptions');
     }
 };
