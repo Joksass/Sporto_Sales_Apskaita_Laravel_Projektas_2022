@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\YourAbonnementsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/your_abonnements', function () {
+Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['verified'])->name('dashboard');
+
+Route::resource('/your_abonnements', YourAbonnementsController::class)->middleware(['verified']);
 
 require __DIR__.'/auth.php';
