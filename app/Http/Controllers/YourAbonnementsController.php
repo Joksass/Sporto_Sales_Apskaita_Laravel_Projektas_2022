@@ -17,8 +17,15 @@ class YourAbonnementsController extends Controller
      */
     public function index()
     {
-        $abonnements = YourAbonnements::latest();
-        return view ('your_abonnements.index');
+        $subscriptions = DB::table('subscriptions')
+        ->select('users.name', 'abonnement_types.abonnement','paid','from', 'abonnement_types.coach', 'clubs.club')
+        ->join('users', 'subscriptions.user_id', '=', 'users.id')
+        ->join('abonnement_types','subscriptions.abonnement_id', '=', 'abonnement_types.id')
+        ->join('clubs','subscriptions.club_id', '=', 'clubs.id')
+        ->paginate(50);
+
+        return view('your_abonnements.index',compact('subscriptions'))
+            ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**

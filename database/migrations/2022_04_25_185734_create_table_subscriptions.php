@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('abonnement_id')->constrained('abonnement_types');
             $table->foreignId('club_id')->constrained('clubs');
+            $table->boolean('paid')->default(FALSE);
+            $table->date('from')->default('0001-01-01');
             $table->timestamps();
         });
     }
