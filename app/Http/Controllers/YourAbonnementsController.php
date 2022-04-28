@@ -7,6 +7,7 @@ use App\Http\Requests\StoreYourAbonnementsRequest;
 use App\Http\Requests\UpdateYourAbonnementsRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class YourAbonnementsController extends Controller
 {
@@ -22,6 +23,7 @@ class YourAbonnementsController extends Controller
         ->join('users', 'subscriptions.user_id', '=', 'users.id')
         ->join('abonnement_types','subscriptions.abonnement_id', '=', 'abonnement_types.id')
         ->join('clubs','subscriptions.club_id', '=', 'clubs.id')
+        ->where('subscriptions.user_id', '=', Auth::user()->id)
         ->paginate(50);
 
         return view('your_abonnements.index',compact('subscriptions'))
