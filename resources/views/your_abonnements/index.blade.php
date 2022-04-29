@@ -127,6 +127,12 @@
                     </div>
                 </div>
 
+
+                <div class="container mt-2">
+                    <div class="row">
+                        {!! $subscriptions->links() !!}
+                    </div>
+                </div>
         
         </x-app-layout> 
         

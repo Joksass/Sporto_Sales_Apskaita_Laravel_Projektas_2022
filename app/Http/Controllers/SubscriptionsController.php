@@ -26,10 +26,11 @@ class SubscriptionsController extends Controller
         ->join('abonnement_types','subscriptions.abonnement_id', '=', 'abonnement_types.id')
         ->join('clubs','subscriptions.club_id', '=', 'clubs.id')
         ->where('subscriptions.user_id', '=', Auth::user()->id)
-        ->paginate(10);
+        ->orderBy('till', 'desc')
+        ->paginate(12);
 
         return view('your_abonnements.index',compact('subscriptions', 'abonnements', 'clubs'))
-            ->with('i', (request()->input('page', 1) - 1) * 10);
+            ->with('i', (request()->input('page', 1) - 1) * 12);
     }
 
     /**
