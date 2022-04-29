@@ -34,7 +34,7 @@ class AbonnementTypesSeeder extends Seeder
         ]);
         AbonnementTypes::Create([
             'abonnement' => 'Saugusio + Treneris',
-            'coach' => 'Donaltas',
+            'coach' => 'Donaldas',
             'coach_specialization' => 'TRX ir Fitnesas',
             'lenght' => '1',
             'price' => '45',

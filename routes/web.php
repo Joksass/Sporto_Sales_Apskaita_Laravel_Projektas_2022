@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\YourAbonnementsController;
+use App\Http\Controllers\SubscriptionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +22,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['verified'])->name('dashboard');
 
-Route::resource('/your_abonnements', YourAbonnementsController::class)->middleware(['verified']);
+Route::resource('/your_abonnements', SubscriptionsController::class)->middleware(['verified']);
 
 require __DIR__.'/auth.php';
