@@ -27,6 +27,7 @@ class SubscriptionsController extends Controller
         ->join('clubs','subscriptions.club_id', '=', 'clubs.id')
         ->where('subscriptions.user_id', '=', Auth::user()->id)
         ->orderBy('till', 'desc')
+        ->orderBy('created_at', 'desc')
         ->paginate(12);
 
         return view('your_abonnements.index',compact('subscriptions', 'abonnements', 'clubs'))
@@ -60,9 +61,6 @@ class SubscriptionsController extends Controller
         $subscriptions->club_id = $request->club;
         $subscriptions->user_id = Auth::user()->id;
         $subscriptions->save();
-
-
-       // YourAbonnements::create($request->all());
 
         return redirect()->route('your_abonnements.index')
                         ->with('success','Sėkmingai užsakytas abonimentas, dabar atvykite pas mus ir apmokėkite abonimentą.');

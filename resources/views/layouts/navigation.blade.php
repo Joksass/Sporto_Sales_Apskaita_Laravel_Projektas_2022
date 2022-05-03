@@ -15,6 +15,11 @@
                     <x-nav-link :href="route('your_abonnements.index')" :active="request()->routeIs('your_abonnements.index')">
                         {{ __('Your abonnements') }}
                     </x-nav-link>
+                    @if (Auth::check() && Auth()->user()->Admin == 1)
+                    <x-nav-link :href="route('subscriptions_admin.index')" :active="request()->routeIs('subscriptions_admin.index')">
+                        {{ __('Admin management panel') }}
+                    </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -63,9 +68,15 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
+            <x-nav-link :href="route('your_abonnements.index')" :active="request()->routeIs('your_abonnements.index')">
+                {{ __('Your abonnements') }}
+            </x-nav-link>
+            @if (Auth::check() && Auth()->user()->Admin == 1)
+                <br>
+                <x-nav-link :href="route('subscriptions_admin.index')" :active="request()->routeIs('subscriptions_admin.index')">
+                    {{ __('Admin management panel') }}
+                </x-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

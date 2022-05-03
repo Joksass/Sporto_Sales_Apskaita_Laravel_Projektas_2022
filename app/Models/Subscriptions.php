@@ -9,6 +9,6 @@ class Subscriptions extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id','abonnement_id','club_id'
+        'user_id','abonnement_id','club_id','paid','till'
     ];
 }

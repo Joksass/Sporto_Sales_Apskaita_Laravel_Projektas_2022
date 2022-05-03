@@ -29,7 +29,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 text-end mt-2">
-                            <button type="button" class="btn bg-success" data-bs-toggle="modal" data-bs-target="#myModal">
+                            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#myModal" data-toggle="buttons">
                                 Užsisakyti abonimentą
                             </button>
                         </div>
@@ -75,8 +75,8 @@
 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="button" class="btn bg-danger"  data-bs-dismiss="modal">Uždaryti</button>
-                            <button type="submit" class="btn bg-success">Patvirtinti ir užsisakyti</button>
+                            <button type="button" class="btn btn-outline-danger"  data-bs-dismiss="modal">Uždaryti</button>
+                            <button type="submit" class="btn btn-outline-success">Patvirtinti ir užsisakyti</button>
                         </div>
 
                         </div>
@@ -91,7 +91,7 @@
                         @foreach ($subscriptions as $subscription)
                         @if ($subscription->till >= date("Y-m-d", time() - 1728000) || $subscription->paid === 0)
                         <div class="col-lg-4 col-md-12 mt-2">
-                            <div class="card text-center border border-dark shadow-0 ">
+                            <div class="card text-center border border-dark shadow-0 shadow-sm">
                                 <div class="card-body">
                                     <h5 class="card-title fw-bold fs-5">{{ $subscription->abonnement}}</h5>
                                     <p class="card-text">

@@ -15,7 +15,7 @@
     "Action Name": "Pavadinimas",
     "Action Status": "Statusas",
     "Action Target": "Tikslas",
-    "Actions": "Veiksmas",
+    "Actions": "Veiksmai",
     "Add": "Pridėti",
     "Add a new team member to your team, allowing them to collaborate with you.": "Pridėkite naują komandos narį prie savo komandos, leisdami jam bendradarbiauti su jumis.",
     "Add additional security to your account using two factor authentication.": "Papildomai apsaugokite savo paskyrą naudojant dviejų veiksnių autentifikavimą.",
@@ -723,5 +723,14 @@
     "Zip / Postal Code": "Zip / Postal Code",
     "Åland Islands": "Åland Islands",
     
-    "Your abonnements": "Jūsų abonimentai"
+    "Your abonnements": "Jūsų abonimentai",
+    "Admin management panel": "Administratoriaus valdymo panelė",
+    "User order": "Vartotojas",
+    "Abonnement type": "Abonimentas",
+    "Order date": "Užsakymo data",
+    "Payment": "Apmokėjimas",
+    "Expiration": "Galioja iki",
+    "Sport Club": "Sporto klubas",
+    "Is Payed": "Apmokėta",
+    "Price": "Kaina"
 }
