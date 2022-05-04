@@ -70,19 +70,7 @@ class SubscriptionsAdminController extends Controller
      */
     public function edit($id)
     {
-        $subscriptions = Subscriptions::find($id)
-        ->select('subscriptions.id', 'subscriptions.user_id','subscriptions.abonnement_id','subscriptions.club_id', 'subscriptions.paid', 'subscriptions.till', 
-        'users.name',
-        'clubs.club',
-        'abonnement_types.price', 'abonnement_types.coach', 'abonnement_types.coach_specialization', 'abonnement_types.abonnement')
-        ->join('users', 'subscriptions.user_id', '=', 'users.id')
-        ->join('abonnement_types','subscriptions.abonnement_id', '=', 'abonnement_types.id')
-        ->join('clubs','subscriptions.club_id', '=', 'clubs.id')
-        ->orderBy('till', 'desc')
-        ->orderBy('subscriptions.created_at', 'desc')
-        ->where('subscriptions.id', '=', $id)
-        ->get();
-        return view ('subscriptions_admin.edit', compact('subscriptions'));
+        //
     }
 
     /**

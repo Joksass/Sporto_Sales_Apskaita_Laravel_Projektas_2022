@@ -7,6 +7,11 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <style>
+            form.form-inline {
+            display: inline-block
+            }
+        </style>
     </head>
     <body class="font-sans antialiased">
         <x-app-layout>
@@ -58,43 +63,109 @@
                                     </td>
                                     <td>{{ $subscription->created_at}}</td>
                                     <td>
-                                        <form action="{{route('subscriptions_admin.destroy', $subscription)}}" method="POST">
+                                        <!--<form action="{{route('subscriptions_admin.update', $subscription->id)}}" method="POST" class="form-inline">-->
+                                        <!--EDIT-->
+                                        <button type="button" class="btn btn-sm btn-outline-info shadow-sm" data-bs-toggle="modal" data-bs-target="#editModal{{$subscription->id}}" data-toggle="buttons">
+                                            Redaguoti
+                                        </button>
+                                                <!-- The Edit Modal -->
+                                                <div class="modal" id="editModal{{$subscription->id}}">
+                                                <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                                                    <div class="modal-content">
+                                                        <form action="{{ route('subscriptions_admin.update',$subscription->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('PUT')
+                                                            <!-- Modal Header -->
+                                                            <div class="modal-header">
+                                                            <h4 class="modal-title fw-bold fs-2">{{$subscription->name}} vartotojo abonimento redagavimas</h4>
+                                                            </div>
 
-                                            <a class="btn btn-sm btn-outline-info shadow-sm" href = "{{ route('subscriptions_admin.edit',$subscription->id) }}">
-                                                Redaguoti
-                                            </a>
+                                                            <!-- Modal body -->
+                                                            <div class="modal-body">
+                                                                <input type ="hidden" name ="abonnement_id" value ="{{$subscription->abonnement_id}}">
+                                                                <input type ="hidden" name ="club_id" value ="{{$subscription->club_id}}">
+                                                                <input type ="hidden" name ="user_id" value ="{{$subscription->user_id}}">
 
-                                            @csrf
-                                            @method('DELETE')
+                                                                <div>
+                                                                <div class="fw-bold mt-2 d-inline">{{ __('Abonnement type') }}:</div>
+                                                                {{ $subscription->abonnement}} @if($subscription->coach === "-")@else{{ $subscription->coach}} ({{$subscription->coach_specialization}})@endif
+                                                                </div>
 
-                                            <!--DELETE-->
-                                            <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delModal{{$subscription->id}}" data-toggle="buttons">
-                                                 Trinti
-                                            </button>
-                                                    
+                                                                <div>
+                                                                <div class="fw-bold mt-2 d-inline">{{ __('Sport Club') }}:</div>
+                                                                {{ $subscription->club}}
+                                                                </div>
+
+                                                                <div>
+                                                                <div class="fw-bold mt-2 d-inline">{{ __('Price') }}:</div>
+                                                                {{ $subscription->price}}€
+                                                                </div>
+
+                                                                <div class="mt-2">
+                                                                <select class="form-select form-select-sm w-25 shadow-sm" aria-label="Small select" name="paid">
+                                                                @if($subscription->paid === 0)
+                                                                <option value="0">Neapmokėta</option>
+                                                                <option value="1">Apmokėta</option>
+                                                                @else
+                                                                <option value="1">Apmokėta</option>
+                                                                <option value="0">Neapmokėta</option>
+                                                                @endif
+                                                                </select>
+                                                                </div>
+
+                                                                <div>
+                                                                <div class="form-group">
+                                                                <div class="fw-bold mt-2">{{ __('Expiration') }}:</div>
+                                                                <input type="date" value="{{$subscription->till}}" max="2999-12-31" name="till" class="form-control w-25 shadow-sm">
+                                                                </div>
+                                                                </div>
+
+                                                                <div>
+                                                                <div class="fw-bold mt-2 d-inline">{{ __('Order date') }}:</div>
+                                                                {{ $subscription->created_at}}
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Modal footer -->
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-outline-success">Patvirtinti ir redaguoti</button>
+                                                                <button type="button" class="btn btn-outline-danger"  data-bs-dismiss="modal">Uždaryti</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                        <!--EDIT END-->
+                                        
+                                        <!--DELETE-->
+                                        <button type="button" class="btn btn-sm btn-outline-danger shadow-sm" data-bs-toggle="modal" data-bs-target="#delModal{{$subscription->id}}" data-toggle="buttons">
+                                                Trinti
+                                        </button>
                                             <!-- The Delete Modal -->
                                             <div class="modal" id="delModal{{$subscription->id}}">
                                             <div class="modal-dialog modal-lg modal-dialog-scrollable">
                                                 <div class="modal-content">
+                                                    <form action="{{route('subscriptions_admin.destroy', $subscription->id)}}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')  
+                                                        <!-- Modal body -->
+                                                        <div class="modal-body">
+                                                            <div class="text-center h5">Ar tikrai norite ištrinti?</div>
+                                                        </div>
 
-                                                    <!-- Modal body -->
-                                                    <div class="modal-body">
-                                                        <div class="text-center h5">Ar tikrai norite ištrinti?</div>
-
-                                                    </div>
-
-                                                    <!-- Modal footer -->
-                                                    <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-sm btn-outline-danger shadow-sm">
-                                                            Patvirtinti
-                                                        </button>
-                                                        <button type="button" class="btn btn-sm btn-outline-success" data-bs-dismiss="modal">Atšaukti</button>
-                                                    </div>
-
+                                                        <!-- Modal footer -->
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-sm btn-outline-danger shadow-sm">
+                                                                Patvirtinti
+                                                            </button>
+                                                            <button type="button" class="btn btn-sm btn-outline-success" data-bs-dismiss="modal">Atšaukti</button>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                             </div>
                                         </form>
+                                        <!--DELETE END-->
                                     </td>
                                 </tr>
                                 @endforeach
